@@ -21,7 +21,7 @@ public class TestBase {
     static void setUp() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
-        Configuration.browser = String.valueOf(config.getBrowser());
+        Configuration.browser = config.getBrowser().name;
         Configuration.baseUrl = config.getBaseUrl();
         // Configuration.remote = "https://" + config.login() + ":" + config.password() + "@" + selenoid;
     }
