@@ -1,4 +1,6 @@
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import config.WebConfig;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -13,7 +15,7 @@ import static io.qameta.allure.Allure.step;
 
 public class TestBase {
 
-    private WebDriver driver = new WebDriverProvider().get();
+    private static WebDriver driver = new WebDriverProvider().get();
     static WebConfig config = ConfigFactory.create(WebConfig.class, System.getProperties());
     //static String selenoid = System.getProperty("selenoid", "selenoid.autotests.cloud/wd/hub");
 
@@ -21,12 +23,14 @@ public class TestBase {
     static void setUp() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
-        Configuration.browser = config.getBrowser().name;
+        WebDriverRunner.setWebDriver(driver);
+        Configuration.browserSize = config.browserSize();
         Configuration.baseUrl = config.getBaseUrl();
+
         // Configuration.remote = "https://" + config.login() + ":" + config.password() + "@" + selenoid;
     }
 
-    @BeforeEach
+   @BeforeEach
     void openPage() {
         step("Открываем страницу для тестирования", () -> {
             open(config.getBaseUrl());
@@ -35,7 +39,7 @@ public class TestBase {
 
     @AfterEach
     void closePage() {
-        closeWebDriver();
+        Selenide.closeWebDriver();
     }
 }
 
