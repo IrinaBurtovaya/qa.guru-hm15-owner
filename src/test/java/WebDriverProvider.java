@@ -14,13 +14,11 @@ import java.util.function.Supplier;
 
 public class WebDriverProvider implements Supplier<WebDriver> {
 
-    private static WebDriver driver = new WebDriverProvider().get();
-
-  private WebConfig config;
+    private final WebConfig config = ConfigFactory.create(WebConfig.class, System.getProperties());
 
     public WebDriverProvider() {
-        this.config = ConfigFactory.create(WebConfig.class, System.getProperties());
     }
+
 
     @Override
     public WebDriver get() {
