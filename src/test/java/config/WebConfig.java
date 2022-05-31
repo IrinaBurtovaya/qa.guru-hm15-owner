@@ -20,7 +20,7 @@ public interface WebConfig extends Config {
     String getBrowserVersion();
 
     @Key("selenoidUrl")
-    URL getSelenoidUrl();
+    URL selenoidUrl();
 
     @Key("browserSize")
     @DefaultValue("1920x1080")
@@ -28,5 +28,9 @@ public interface WebConfig extends Config {
 
     /*@Key("remoteWebDriver")
     String getRemoteWebDriver();*/
+
+    /*public default URL selenoidUrl() {
+        String selenoidUrl = System.getProperty("selenoidUrl");
+    }*/
 
 }

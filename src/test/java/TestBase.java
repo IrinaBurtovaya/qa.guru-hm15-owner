@@ -8,6 +8,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.util.Objects;
+
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
@@ -26,11 +28,10 @@ public class TestBase {
         Configuration.browserVersion = webConfig.getBrowserVersion();
         Configuration.browserSize = webConfig.getBrowserSize();
 
-        if (!webConfig.getSelenoidUrl().equals("")) {
-            Configuration.remote = String.valueOf(webConfig.getSelenoidUrl());
+        if (!Objects.equals(webConfig.selenoidUrl(), "")) {
+            Configuration.remote = String.valueOf(webConfig.selenoidUrl());
         }
 
-        //Configuration.remote = String.valueOf(webConfig.getSelenoidUrl());
     }
 
 
