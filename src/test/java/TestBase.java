@@ -19,21 +19,16 @@ public class TestBase {
 
     @BeforeAll
     static void setUp() {
-
         SelenideLogger.addListener("allure", new AllureSelenide());
-
-
 
         Configuration.browser = webConfig.getBrowser();
         Configuration.browserVersion = webConfig.getBrowserVersion();
         Configuration.browserSize = webConfig.getBrowserSize();
 
-        if (!Objects.equals(webConfig.selenoidUrl(), "")) {
-            Configuration.remote = String.valueOf(webConfig.selenoidUrl());
+        if (!Objects.equals(webConfig.getRemoteWebDriver(), "")) {
+            Configuration.remote = webConfig.getRemoteWebDriver();
         }
-
     }
-
 
     @BeforeEach
     void openPage() {

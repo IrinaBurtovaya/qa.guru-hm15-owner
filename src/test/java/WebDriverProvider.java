@@ -13,14 +13,11 @@ import java.util.function.Supplier;
 
 public class WebDriverProvider implements Supplier<WebDriver> {
 
-    private final WebConfig config; /*= ConfigFactory.create(WebConfig.class, System.getProperties());*/
+    private final WebConfig config;
 
     public WebDriverProvider() {
-
         this.config = ConfigFactory.create(WebConfig.class, System.getProperties());
     }
-
-
 
     @Override
     public WebDriver get() {
@@ -31,7 +28,7 @@ public class WebDriverProvider implements Supplier<WebDriver> {
 
     private WebDriver createWebDriver() {
 
-        if (Objects.isNull(config.selenoidUrl())) {
+        if (Objects.isNull(config.getRemoteUrl())) {
             if (config.getBrowser().equals("firefox")) {
                 WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver();
@@ -41,9 +38,9 @@ public class WebDriverProvider implements Supplier<WebDriver> {
             }
         } else {
             if (config.getBrowser().equals("chrome")) {
-                return new RemoteWebDriver(config.selenoidUrl(), new ChromeOptions());
+                return new RemoteWebDriver(config.getRemoteUrl(), new ChromeOptions());
             } else if (config.getBrowser().equals("firefox")) {
-                return new RemoteWebDriver(config.selenoidUrl(), new FirefoxOptions());
+                return new RemoteWebDriver(config.getRemoteUrl(), new FirefoxOptions());
             }
         }
         throw new NullPointerException("No such browser");

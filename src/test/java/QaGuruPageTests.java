@@ -10,7 +10,6 @@ import static io.qameta.allure.Allure.step;
 public class QaGuruPageTests extends TestBase {
     QaGuruPage qaGuruPage = new QaGuruPage();
 
-    @Tag("mainPageTest")
     @Test
     @DisplayName("Тест на открытие главной страницы сайта qa.guru")
     void mainPageHasBeenOpened() {
