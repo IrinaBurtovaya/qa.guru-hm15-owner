@@ -1,4 +1,3 @@
-import com.codeborne.selenide.Browsers;
 import config.WebConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aeonbits.owner.ConfigFactory;
@@ -28,7 +27,7 @@ public class WebDriverProvider implements Supplier<WebDriver> {
     }
 
     private WebDriver createWebDriver() {
-        if (Objects.isNull(config.getRemoteUrl())) {
+        if (Objects.isNull(config.getSelenoidUrl())) {
             if (config.getBrowser().equals("firefox")) {
                 WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver();
@@ -38,9 +37,9 @@ public class WebDriverProvider implements Supplier<WebDriver> {
             }
         } else {
             if (config.getBrowser().equals("chrome")) {
-                return new RemoteWebDriver(config.getRemoteUrl(), new ChromeOptions());
+                return new RemoteWebDriver(config.getSelenoidUrl(), new ChromeOptions());
             } else if (config.getBrowser().equals("firefox")) {
-                return new RemoteWebDriver(config.getRemoteUrl(), new FirefoxOptions());
+                return new RemoteWebDriver(config.getSelenoidUrl(), new FirefoxOptions());
             }
         }
         throw new NullPointerException("No such browser");

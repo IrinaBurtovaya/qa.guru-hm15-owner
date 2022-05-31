@@ -19,10 +19,14 @@ public interface WebConfig extends Config {
     @DefaultValue("100.0")
     String getBrowserVersion();
 
-    @Key("remoteUrl")
-    URL getRemoteUrl();
+    @Key("selenoidUrl")
+    URL getSelenoidUrl();
 
-    @Key("remoteWebDriver")
-    String getRemoteWebDriver();
+    @Key("browserSize")
+    @DefaultValue("1920x1080")
+    String getBrowserSize();
+
+    /*@Key("remoteWebDriver")
+    String getRemoteWebDriver();*/
 
 }

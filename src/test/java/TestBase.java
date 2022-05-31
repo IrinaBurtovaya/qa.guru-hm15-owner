@@ -24,9 +24,13 @@ public class TestBase {
 
         Configuration.browser = webConfig.getBrowser();
         Configuration.browserVersion = webConfig.getBrowserVersion();
-        if (!webConfig.getRemoteWebDriver().equals("")) {
-            Configuration.remote = webConfig.getRemoteWebDriver();
+        Configuration.browserSize = webConfig.getBrowserSize();
+
+        if (!webConfig.getSelenoidUrl().equals("")) {
+            Configuration.remote = String.valueOf(webConfig.getSelenoidUrl());
         }
+
+        //Configuration.remote = String.valueOf(webConfig.getSelenoidUrl());
     }
 
 
