@@ -13,20 +13,19 @@ import static io.qameta.allure.Allure.step;
 
 public class TestBase {
 
-    static WebConfig config = ConfigFactory.create(WebConfig.class, System.getProperties());
+    static WebConfig webConfig = ConfigFactory.create(WebConfig.class, System.getProperties());
 
     @BeforeAll
     static void setUp() {
 
         SelenideLogger.addListener("allure", new AllureSelenide());
 
-        Configuration.browser = config.browser();
-        Configuration.browserSize = config.browserSize();
-        Configuration.baseUrl = config.baseUrl();
-        Configuration.browserVersion = config.browserVersion();
 
-        if (!config.getRemoteWebDriver().equals("")) {
-            Configuration.remote = config.getRemoteWebDriver();
+
+        Configuration.browser = webConfig.getBrowser();
+        Configuration.browserVersion = webConfig.getBrowserVersion();
+        if (!webConfig.getRemoteWebDriver().equals("")) {
+            Configuration.remote = webConfig.getRemoteWebDriver();
         }
     }
 
@@ -34,7 +33,7 @@ public class TestBase {
     @BeforeEach
     void openPage() {
         step("Открываем страницу для тестирования", () -> {
-            open(config.baseUrl());
+            open(webConfig.getBaseUrl());
         });
     }
 

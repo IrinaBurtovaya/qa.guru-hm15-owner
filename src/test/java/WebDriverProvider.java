@@ -23,23 +23,23 @@ public class WebDriverProvider implements Supplier<WebDriver> {
     @Override
     public WebDriver get() {
         WebDriver driver = createWebDriver();
-        driver.get(config.baseUrl());
+        driver.get(config.getBaseUrl());
         return driver;
     }
 
     private WebDriver createWebDriver() {
         if (Objects.isNull(config.getRemoteUrl())) {
-            if (config.browser().equals("firefox")) {
+            if (config.getBrowser().equals("firefox")) {
                 WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver();
-            } else if (config.browser().equals("chrome")) {
+            } else if (config.getBrowser().equals("chrome")) {
                 WebDriverManager.chromedriver().setup();
                 return new ChromeDriver();
             }
         } else {
-            if (config.browser().equals("chrome")) {
+            if (config.getBrowser().equals("chrome")) {
                 return new RemoteWebDriver(config.getRemoteUrl(), new ChromeOptions());
-            } else if (config.browser().equals("firefox")) {
+            } else if (config.getBrowser().equals("firefox")) {
                 return new RemoteWebDriver(config.getRemoteUrl(), new FirefoxOptions());
             }
         }

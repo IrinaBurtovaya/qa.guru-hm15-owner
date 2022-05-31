@@ -9,19 +9,15 @@ public interface WebConfig extends Config {
 
     @Key("browser")
     @DefaultValue("chrome")
-    String browser();
+    String getBrowser();
 
     @Key("baseUrl")
     @DefaultValue("https://qa.guru/")
-    String baseUrl();
-
-    @Key("browserSize")
-    @DefaultValue("1920x1080")
-    String browserSize();
+    String getBaseUrl();
 
     @Key("browserVersion")
     @DefaultValue("100.0")
-    String browserVersion();
+    String getBrowserVersion();
 
     @Key("remoteUrl")
     URL getRemoteUrl();
