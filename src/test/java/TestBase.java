@@ -25,9 +25,9 @@ public class TestBase {
         Configuration.baseUrl = config.baseUrl();
         Configuration.browserVersion = config.browserVersion();
 
-        if (!config.getRemoteWebDriver().equals("")) {
+        /*9if (!config.getRemoteWebDriver().equals("")) {
             Configuration.remote = config.getRemoteWebDriver();
-        }
+        }*/
     }
 
 
