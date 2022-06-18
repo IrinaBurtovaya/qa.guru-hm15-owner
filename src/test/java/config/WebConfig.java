@@ -2,31 +2,25 @@ package config;
 
 import org.aeonbits.owner.Config;
 
-import java.net.URL;
-
 @Config.Sources("classpath:config/${env}.properties")
 public interface WebConfig extends Config {
-
-    @Key("browser")
-    @DefaultValue("chrome")
-    String getBrowser();
 
     @Key("baseUrl")
     @DefaultValue("https://qa.guru/")
     String getBaseUrl();
 
+    @Key("browser")
+    @DefaultValue("CHROME")
+    String browser();
+
     @Key("browserVersion")
     @DefaultValue("100.0")
-    String getBrowserVersion();
-
-    @Key("remoteUrl")
-    URL getRemoteUrl();
+    String browserVersion();
 
     @Key("browserSize")
     @DefaultValue("1920x1080")
-    String getBrowserSize();
+    String browserSize();
 
-    @Key("remoteWebDriver")
-    String getRemoteWebDriver();
-
-    }
+    @Key("selenoidUrl")
+    String getSelenoidUrl();
+}

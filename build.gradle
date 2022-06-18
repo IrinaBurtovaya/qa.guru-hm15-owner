@@ -57,12 +57,18 @@ tasks.withType(Test) {
     }
 }
 
-task mainPageTest(type: Test) {
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task web(type: Test) {
     useJUnitPlatform {
-        includeTags "mainPageTest"
+        includeTags "web"
     }
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+task api(type: Test) {
+    useJUnitPlatform {
+        includeTags "api"
+    }
 }
